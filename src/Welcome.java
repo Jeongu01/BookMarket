@@ -25,50 +25,53 @@ public class Welcome {
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         Member member = new Member();
-        setMember(member);
+        System.out.print("당신의 이름을 입력하세요 : ");
+        member.setName(scanner.next());
+        System.out.print("연락처를 입력하세요 : ");
+        member.setPhoneNum(scanner.next());
         boolean quit = false;
         while (!quit) {
-            printWelcome();
-            int selectedMenu = selectMenu();
+            menuIntroduction();
+
+            System.out.print("메뉴 번호를 선택해주세요 ");
+            int selectedMenu = scanner.nextInt();
             System.out.println(selectedMenu + "번을 선택했습니다");
             if (selectedMenu < 1 || selectedMenu > 8) {
                 System.out.println("메뉴는 1부터 8까지의 숫자로 입력해 주세요!");
             } else {
                 switch (selectedMenu) {
-                    case 1 -> printMemberInfo(member);
-                    case 2 -> System.out.println("장바구니 상품 목록 보기");
-                    case 3 -> System.out.println("장바구니 비우기");
-                    case 4 -> System.out.println("장바구니에 항목 추가하기");
-                    case 5 -> System.out.println("장바구니의 항목 수량 줄이기");
-                    case 6 -> System.out.println("장바구니의 항목 삭제하기");
-                    case 7 -> System.out.println("영수증 표시하기");
-                    case 8 ->{
-                        System.out.print("프로그램 종료");
+                    case 1 :
+                        menuGuestInfo(member);
+                        break;
+                    case 2 :
+                        menuCartItemList();
+                        break;
+                    case 3 :
+                        menuCartClear();
+                        break;
+                    case 4 :
+                        menuCartAddItem();
+                        break;
+                    case 5 :
+                        menuCartRemoveItemCount();
+                        break;
+                    case 6 :
+                        menuCartRemoveItemCount();
+                        break;
+                    case 7 :
+                        menuCartBill();
+                        break;
+                    case 8 :
+                        menuExit();
                         quit = true;
-                    }
+                        break;
                 }
             }
+
         }
     }
 
-    private static void printMemberInfo(Member member) {
-        System.out.println("현재 고객의 정보 : " + member.getName() + "   연락처:" + member.getPhoneNum());
-    }
-
-    private static int selectMenu() {
-        System.out.print("메뉴 번호를 선택해주세요 ");
-        return scanner.nextInt();
-    }
-
-    private static void setMember(Member member) {
-        System.out.print("당신의 이름을 입력하세요 : ");
-        member.setName(scanner.next());
-        System.out.print("연락처를 입력하세요 : ");
-        member.setPhoneNum(scanner.next());
-
-    }
-
-    private static void printWelcome() {
+    public static void menuIntroduction() {
         String greeting = "Welcome to Shopping Mall";
         String tagline = "Welcome to Book Market!";
         String select1 = "1. 고객 정보 확인하기";
@@ -88,5 +91,27 @@ public class Welcome {
         System.out.println(select3 + "\t\t\t" + select6);
         System.out.println(select7 + "\t\t\t" + select8);
         System.out.println("************************************************************");
+    }
+
+    private static void menuGuestInfo(Member member) {
+        System.out.println("현재 고객의 정보 : " + member.getName() + "   연락처:" + member.getPhoneNum());
+    }
+
+    private static void menuCartItemList() {
+    }
+
+    private static void menuCartClear() {
+    }
+
+    private static void menuCartAddItem() {
+    }
+
+    private static void menuCartRemoveItemCount() {
+    }
+
+    private static void menuCartBill() {
+    }
+
+    private static void menuExit() {
     }
 }
